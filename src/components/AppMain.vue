@@ -1,31 +1,39 @@
 <script>
+import { store } from "../store";
+
 export default {
-    name: "AppMain"
+    name: "AppMain",
+
+    data() {
+        return {
+            store
+        }
+    }
 }
 
 </script>
 <!-- -------------------------------------------------------------------------------------------- -->
 <template>
-    <section class="film container">
-        <ul class="row row-cols-5">
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-        </ul>
+    <section class="film container mt-3">
+        <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
+            <ul v-for="elemento in store.filmsArray">
+                <li>{{ elemento.title }}</li>
+                <li>{{ elemento.original_title }}</li>
+                <li>{{ elemento.original_language }}</li>
+                <li>{{ elemento.vote_average }}</li>
+            </ul>
+        </div>
     </section>
 
     <section class="serie container">
-        <ul class="row row-cols-5">
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-            <li>srsdhfsdjkfsdfjdsfdfkjdsfkdfskdfsvds</li>
-        </ul>
+        <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
+            <ul v-for="elemento in store.TvArray">
+                <li>{{ elemento.title }}</li>
+                <li>{{ elemento.original_title }}</li>
+                <li>{{ elemento.original_language }}</li>
+                <li>{{ elemento.vote_average }}</li>
+            </ul>
+        </div>
     </section>
 </template>
 
@@ -35,8 +43,9 @@ export default {
 @use "../style/general.scss";
 @use "../style/partials/variables.scss" as *;
 
-ul{
+.row {
     border: 1px solid red;
     color: white;
+    height: 400px;
 }
 </style>

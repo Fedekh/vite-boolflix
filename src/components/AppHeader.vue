@@ -1,11 +1,17 @@
 <script>
 import SearchBarApp from "./SearchBarApp.vue";
+import { store } from "../store";
 
 export default {
     name: "AppHeader",
     components: {
         SearchBarApp
+    },
+  data() {
+    return {
+      store
     }
+  }
 }
 
 </script>
