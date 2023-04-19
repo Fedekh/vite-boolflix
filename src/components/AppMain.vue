@@ -8,7 +8,12 @@ export default {
     data() {
         return {
             store,
-            flags: ["fr", "ge", "it", "ja", "tk", "en", "us"]
+            flags: ["fr", "ge", "it", "ja", "tk", "en", "us", "es"]
+        }
+    },
+    methods: {
+        getImgPath(name) {
+            return new URL(`../assets/img/${name}.png`, import.meta.url).href;
         }
     }
 }
@@ -25,13 +30,14 @@ export default {
                 <li>Titolo: {{ elemento.title }}</li>
                 <li>Titolo originale: {{ elemento.original_title }}</li>
                 <li>Lingua:
-                    <span v-if="flags.includes((elemento.original_language).png)"> <img
-                            src="../assets/img/${elemento.original_language}.png" alt=""></span>
+                    <span v-if="flags.includes(elemento.original_language)">
+                        <img :src="getImgPath(elemento.original_language)" alt="">
+                    </span>
                     <span v-else>
-
                         {{ elemento.original_language }}
                     </span>
                 </li>
+
                 <li>Voto: {{ elemento.vote_average }}</li>
                 <li>Stelle:
                     <span v-for="i in store.stars">

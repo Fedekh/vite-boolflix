@@ -25,7 +25,7 @@ export default {
     <section>
         <div class="container d-flex justify-content-between align-items-center">
                 <a class="logo" href="">
-                    <img src="../assets/img/Boolfix.jpg.png" alt="">
+                    <img src="../assets/img/Boolfix.jpg" alt="">
                 </a>
             <SearchBarApp @search="$emit('search')"/>
         </div>
