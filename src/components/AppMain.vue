@@ -1,6 +1,7 @@
 <script>
 import { store } from "../store";
 
+
 export default {
     name: "AppMain",
 
@@ -20,11 +21,19 @@ export default {
             <ul v-for="elemento in store.filmsArray">
                 <img :src="`${store.imgPath}${elemento.poster_path}`" alt="">
                 <h3 v-if="!elemento.poster_path">Spiacenti, immagine non disponibile</h3>
-
-                <li>Titolo:{{ elemento.title }}</li>
-                <li>Titolo originale:{{ elemento.original_title }}</li>
-                <li>Lingua Originale:{{ elemento.original_language }}</li>
+                <li>Titolo: {{ elemento.title }}</li>
+                <li>Titolo originale: {{ elemento.original_title }}</li>
+                <li>Lingua: {{ elemento.original_language }}</li>
                 <li>Voto: {{ elemento.vote_average }}</li>
+                <li>Stelle:
+                    <span v-for="i in store.stars">
+                        <i
+                            :class="[(i <= Math.floor(elemento.vote_average / 2)) ? 'fa-solid fa-star' : 'fa-regular fa-star']"></i>
+                    </span>
+                </li>
+
+                <!-- <i class="fa-solid fa-star"></i> piena -->
+                <!-- <i class="fa-regular fa-star"></i> vuota -->
             </ul>
         </div>
     </section>
@@ -56,7 +65,9 @@ export default {
     .row {
         border: 1px solid red;
         color: white;
-        // height: 400px;
+        .fa-star{
+            color: yellow;
+        }
     }
 }
 </style>
