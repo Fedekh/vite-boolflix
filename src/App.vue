@@ -1,4 +1,4 @@
-<script >
+<script>
 import AppHeader from "./components/AppHeader.vue";
 import AppMain from "./components/AppMain.vue";
 import axios from "axios";
@@ -16,9 +16,9 @@ export default {
   },
   methods: {
     userSearch() {
-      if (this.store.querySearch==="") {
+      if (this.store.querySearch === "") {
         console.log("error");
-      }else{
+      } else {
         this.searchFilm();
         this.searchTv();
         this.store.querySearch = "";
@@ -27,11 +27,14 @@ export default {
     searchFilm() {
       axios
         .get(this.store.apiFilms, {
-          api_key: this.store.myApiKey,
-          query: this.store.querySearch
+          params: {
+            api_key: this.store.myApiKey,
+            query: this.store.querySearch
+          }
         })
         .then(resp => {
-          this.store.filmsArray = resp.data.results
+          console.log(resp);
+          this.store.filmsArray = resp.data.results;
         })
         .catch(error => {
           console.error(error);
@@ -40,11 +43,14 @@ export default {
     searchTv() {
       axios
         .get(this.store.apiTv, {
-          api_key: this.store.myApiKey,
-          query: this.store.querySearch
+          params: {
+            api_key: this.store.myApiKey,
+            query: this.store.querySearch
+          }
         })
         .then(resp => {
-          this.store.TvArray = resp.data.results
+          console.log(resp);
+          this.store.tvArray = resp.data.results;
         })
         .catch(error => {
           console.error(error);
@@ -57,7 +63,7 @@ export default {
 
 
 <template>
-  <AppHeader @search="searchFilm" />
+  <AppHeader @search="userSearch" />
   <AppMain />
 </template>
 

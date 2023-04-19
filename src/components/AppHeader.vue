@@ -4,6 +4,9 @@ import { store } from "../store";
 
 export default {
     name: "AppHeader",
+    emits: [
+        "search"
+    ],
     components: {
         SearchBarApp
     },
@@ -21,10 +24,10 @@ export default {
 <template>
     <section>
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="logo">
-                <img src="../assets/img/Boolfix.jpg.png" alt="">
-            </div>
-            <SearchBarApp />
+                <a class="logo" href="">
+                    <img src="../assets/img/Boolfix.jpg.png" alt="">
+                </a>
+            <SearchBarApp @search="$emit('search')"/>
         </div>
     </section>
 </template>
