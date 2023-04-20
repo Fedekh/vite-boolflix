@@ -4,7 +4,7 @@ import { store } from "../store";
 export default {
     name: "SearchBarApp",
     emits: [
-        "search"
+        "search",
     ],
     data(){
         return{
@@ -19,7 +19,7 @@ export default {
 
 <template>
     <div class="research">
-        <input v-model.trim="store.querySearch" class="input rounded-pill"  type="text" id="title-search" placeholder="Cerca un titolo">
+        <input @keyup.enter="$emit('search')" v-model.trim="store.querySearch" class="input rounded-pill"  type="text" id="title-search" placeholder="Cerca un titolo">
         <button @click="$emit('search')" class="mx-4 btn btn-success rounded-pill" for="title-search">Cerca</button>
         <img class="img" src="https://static.vecteezy.com/system/resources/previews/000/442/657/non_2x/vector-search-icon.jpg" alt="">
     </div>

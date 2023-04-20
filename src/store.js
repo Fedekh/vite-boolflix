@@ -7,6 +7,7 @@ export const store = reactive({
     imgPath: "https://image.tmdb.org/t/p/w342",
     filmsArray: [],
     tvArray: [],
-    querySearch: "",
-    stars:5
+    querySearch: "",        // campo di ricerca
+    stars:5,                // max numero di valutazione in stelle
 });
+
