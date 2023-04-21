@@ -5,8 +5,8 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div class="loader-wrapper d-flex justify-content-center align-items-start">
+  <div class="container ">
+    <div class="loader-wrapper d-flex justify-content-center align-items-start mt-5 pt-5">
       <h2 class="calm">CALMA</h2>
       <div class="loader"></div>
     </div>

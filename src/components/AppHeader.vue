@@ -12,19 +12,22 @@ export default {
     },
     data() {
         return {
-            store
+            store,
+            genere: ''    //variabile per il genere
         }
     },
     methods: {
         reload() {                //ricaricare la pagina
             location.reload();
         },
-        sceltaGenere(argom) {
-            if (argom === 'film') {
+        sceltaGenere(genere) {
+            if (genere === 'film') {
+                this.genere = 'film';
                 this.store.serie = false
                 this.store.film = true
             }
-            if (argom === 'serie') {
+            if (genere === 'serie') {
+                this.genere = 'serie';
                 this.store.film = false
                 this.store.serie = true
             }
@@ -40,10 +43,21 @@ export default {
 <template>
     <section>
         <div class="container d-flex justify-content-between align-items-center">
-            <div class="wrapper">
+            <div class="wrapper d-flex align-items-center">
                 <a class="logo" :href="reload"><img src="../assets/img/Boolfix.jpg" alt=""></a>
-                <button class="rounded-pill mx-4 border-0" @click="sceltaGenere('film')">FILM</button>
-                <button class=" rounded-pill mx-2 border-0" @click="sceltaGenere('serie')">SERIE TV</button>
+                <section class="filtraggio">
+                    <button class="rounded-pill mx-4 border-0" @click="sceltaGenere('film')"
+                        :class="{ 'selected': genere === 'film' }">FILM</button>
+                    <button class=" rounded-pill mx-2 border-0" @click="sceltaGenere('serie')"
+                        :class="{ 'selected': genere === 'serie' }">SERIE TV</button>
+                    <select class="rounded-pill mx-3 border-0 p-1" name="" id="">
+                        <option value="">Scegli una categoria</option>
+                        <option value="">Azione</option>
+                        <option value="">Thriller</option>
+                        <option value="">Comico</option>
+                        <option value="">Fantascienza</option>
+                    </select>
+                </section>
             </div>
             <SearchBarApp @search="$emit('search')" />
         </div>
@@ -58,5 +72,11 @@ export default {
 
 section {
     background-color: $bg-color;
+
+    .selected {
+        background-color: #4CAF50;
+        color: white;
+        outline: none;
+    }
 }
 </style>
