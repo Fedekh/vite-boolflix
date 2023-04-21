@@ -38,6 +38,8 @@ export default {
         })
         .catch(error => {
           console.error(error);
+          this.store.errorMessage= "Oops, quacosa è andato storto...prova a ricaricare la pagina o inserire un nuovo valore numerico"
+
         });
     },
     searchTv() {
@@ -53,7 +55,7 @@ export default {
           this.store.tvArray = resp.data.results;
         })
         .catch(error => {
-          console.error(error);
+          this.store.errorMessage= "Oops, quacosa è andato storto...prova a ricaricare la pagina o inserire un nuovo valore numerico"
         });
     },
   }
@@ -64,9 +66,11 @@ export default {
 
 <template>
   <AppHeader @search="userSearch" />
-  <AppMain />
+  <h2 class="begin text-white mt-5 text-center" v-if="!store.filmsArray.length">INIZIA LA TUA RICERCA...</h2>
+  <AppMain v-else/>
 </template>
 
 <style lang="scss">
 @use "./style/general.scss";
+
 </style>
