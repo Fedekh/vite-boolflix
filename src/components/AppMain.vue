@@ -1,10 +1,15 @@
 <script>
 import { store } from "../store";
+import Loader from "./Loading.vue";
+
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 
 export default {
     name: "AppMain",
+    components: {
+        Loader
+    },
 
     data() {
         return {
@@ -21,61 +26,67 @@ export default {
 </script>
 <!-- -------------------------------------------------------------------------------------------- -->
 <template>
-    <section class="film container mt-3">
-        <h2 class="mb-4 text-white">FILM</h2>
-        <div class="row row-cols-lg-5 mx-1 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
-            <div class="card mb-4 d-xs-flex flex-column justify-content-center" v-for="elemento in store.filmsArray">
-                <div class="copertina">
-                    <img class="notfound" v-if="!elemento.poster_path" src="../assets/img/notfound.jpg" alt="">
-                    <img class="poster" v-else :src="`${store.imgPath}${elemento.poster_path}`" alt="">
-                </div>
-                <div class="infoo flex-column text-white my-2 py-1">
-                    <p v-if="!elemento.poster_path">Spiacenti, immagine non disponibile</p>
-                    <p>Titolo: {{ elemento.title }}</p>
-                    <p class="card-text">Titolo originale: {{ elemento.original_title }}</p>
-                    <p>Lingua:
-                        <span v-if="elemento.original_language !== en"
-                            :class="`fi fi-${elemento.original_language} fis`"></span>
-                        <span v-else class="fi fi-us fis"></span>
-                    </p>
-                    <p class="text-white"> Voto: {{ elemento.vote_average.toFixed(1) }}</p>
-                    <p class="text-white"> Stelle:
-                        <span v-for="voto in store.stars">
-                            <i :class="((Math.round(elemento.vote_average /2 >= voto)) ? 'fa-solid fa-star' : 'fa-regular fa-star')"></i>
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <Loader v-if="store.loading" />
 
-    <section class="serie container mt-3">
-        <h2 class="mb-4 text-white">SERIE TV</h2>
-        <div class="row row-cols-lg-5 mx-1 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
-            <div class="card mb-4 d-xs-flex flex-column justify-content-center" v-for="elemento in store.tvArray">
-                <div class="copertina">
-                    <img class="notfound" v-if="!elemento.poster_path" src="../assets/img/notfound.jpg" alt="">
-                    <img class="poster" v-else :src="`${store.imgPath}${elemento.poster_path}`" alt="">
-                </div>
-                <div class="infoo flex-column text-white my-2 py-1">
-                    <p v-if="!elemento.poster_path">Spiacenti, immagine non disponibile</p>
-                    <p>Titolo: {{ elemento.title }}</p>
-                    <p class="card-text">Titolo originale: {{ elemento.original_title }}</p>
-                    <p>Lingua:
-                        <span v-if="elemento.original_language !== en"
-                            :class="`fi fi-${elemento.original_language} fis`"></span>
-                        <span v-else class="fi fi-us fis"></span>
-                    </p>
-                    <p class="text-white"> Voto: {{ elemento.vote_average.toFixed(1) }}</p>
-                    <p class="text-white"> Stelle:
-                        <span v-for="voto in store.stars">
-                            <i :class="((Math.round(elemento.vote_average /2 >= voto)) ? 'fa-solid fa-star' : 'fa-regular fa-star')"></i>
-                        </span>
-                    </p>
+    <div v-else class="wrapper">
+        <section v-if="store.film" class="film container mt-3">
+            <h2 class="mb-4 text-white">Trovati {{ store.filmsArray.length }} FILM</h2>
+            <div class="row row-cols-lg-5 mx-1 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
+                <div class="card mb-4 d-xs-flex flex-column justify-content-center" v-for="elemento in store.filmsArray">
+                    <div class="copertina">
+                        <img class="notfound" v-if="!elemento.poster_path" src="../assets/img/notfound.jpg" alt="">
+                        <img class="poster" v-else :src="`${store.imgPath}${elemento.poster_path}`" alt="">
+                    </div>
+                    <div class="infoo flex-column text-white my-2 py-1">
+                        <p v-if="!elemento.poster_path">Spiacenti, immagine non disponibile</p>
+                        <p>Titolo: {{ elemento.title }}</p>
+                        <p class="card-text">Titolo originale: {{ elemento.original_title }}</p>
+                        <p>Lingua:
+                            <span v-if="elemento.original_language !== en"
+                                :class="`fi fi-${elemento.original_language} fis`"></span>
+                            <span v-else class="fi fi-us fis"></span>
+                        </p>
+                        <p class="text-white"> Voto: {{ elemento.vote_average.toFixed(1) }}</p>
+                        <p class="text-white"> Stelle:
+                            <span v-for="voto in store.stars">
+                                <i
+                                    :class="((Math.round(elemento.vote_average / 2 >= voto)) ? 'fa-solid fa-star' : 'fa-regular fa-star')"></i>
+                            </span>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section v-if="store.serie" class="serie container mt-3">
+            <h2 class="mb-4 text-white">Trovate {{ store.tvArray.length }} SERIE TV</h2>
+            <div class="row row-cols-lg-5 mx-1 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
+                <div class="card mb-4 d-xs-flex flex-column justify-content-center" v-for="elemento in store.tvArray">
+                    <div class="copertina">
+                        <img class="notfound" v-if="!elemento.poster_path" src="../assets/img/notfound.jpg" alt="">
+                        <img class="poster" v-else :src="`${store.imgPath}${elemento.poster_path}`" alt="">
+                    </div>
+                    <div class="infoo flex-column text-white my-2 py-1">
+                        <p v-if="!elemento.poster_path">Spiacenti, immagine non disponibile</p>
+                        <p>Titolo: {{ elemento.title }}</p>
+                        <p class="card-text">Titolo originale: {{ elemento.original_title }}</p>
+                        <p>Lingua:
+                            <span v-if="elemento.original_language !== en"
+                                :class="`fi fi-${elemento.original_language} fis`"></span>
+                            <span v-else class="fi fi-us fis"></span>
+                        </p>
+                        <p class="text-white"> Voto: {{ elemento.vote_average.toFixed(1) }}</p>
+                        <p class="text-white"> Stelle:
+                            <span v-for="voto in store.stars">
+                                <i
+                                    :class="((Math.round(elemento.vote_average / 2 >= voto)) ? 'fa-solid fa-star' : 'fa-regular fa-star')"></i>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </template>
 
 <!-- -------------------------------------------------------------------------------------------- -->
@@ -86,34 +97,41 @@ export default {
 
 .container {
     position: relative;
-    
+
     .row {
         color: white;
+
         .card {
             cursor: pointer;
             background-color: rgba(0, 0, 0, 0.205);
             width: 220px;
-            .notfound{
+
+            .notfound {
                 width: 250px;
                 object-fit: cover;
             }
-            
+
             i {
                 color: yellow;
             }
-            .copertina{
+
+            .copertina {
                 display: block;
             }
-            .infoo{
+
+            .infoo {
                 display: none;
                 padding: 20px 0;
             }
-            &:hover .copertina{
+
+            &:hover .copertina {
                 display: none;
             }
-            &:hover .infoo{
+
+            &:hover .infoo {
                 display: flex;
             }
-        }   
-    }}
+        }
+    }
+}
 </style>
