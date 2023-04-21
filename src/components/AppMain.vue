@@ -34,7 +34,7 @@ export default {
         <!-- FILM -->
         <section v-if="store.film" class="film container mt-3">
             <h2 class="mb-4 text-center">Trovati {{ store.filmsArray.length }} FILM</h2>
-            <div class="row row-cols-lg-5 mx-1 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
+            <div class="row d-flex flex-nowrap">
                 <div class="card mb-4 d-xs-flex flex-column justify-content-center" v-for="elemento in store.filmsArray">
                     <div class="copertina">
                         <img class="notfound" v-if="!elemento.poster_path" src="../assets/img/notfound.jpg" alt="">
@@ -49,10 +49,10 @@ export default {
                         </p>
                         <p class="d-flex ">
                             <span class="inf">Lingua :</span>
-                            <div v-if="this.arrayLingue.includes(elemento.original_language)">
-                                <img id="flag" :src="getFlagPath(elemento.original_language)" alt="">
-                            </div>
-                            <div v-else>Lingua non trovata</div>
+                        <div v-if="this.arrayLingue.includes(elemento.original_language)">
+                            <img id="flag" :src="getFlagPath(elemento.original_language)" alt="">
+                        </div>
+                        <div v-else>Lingua non trovata</div>
                         </p>
                         <p class="text-white"> <span class="inf">Stelle :</span>
                             <span v-for="voto in store.stars">
@@ -73,10 +73,9 @@ export default {
 
         <!-- SERIE TV -->
 
-        
         <section v-if="store.serie" class="serie container mt-3">
-            <h2 class="mb-4 text-center">Trovati {{ store.tvArray.length }} FILM</h2>
-            <div class="row row-cols-lg-5 mx-1 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
+            <h2 class="mb-4 text-center">Trovate {{ store.tvArray.length }} SERIE TV</h2>
+            <div class="row d-flex flex-nowrap">
                 <div class="card mb-4 d-xs-flex flex-column justify-content-center" v-for="elemento in store.tvArray">
                     <div class="copertina">
                         <img class="notfound" v-if="!elemento.poster_path" src="../assets/img/notfound.jpg" alt="">
@@ -91,10 +90,10 @@ export default {
                         </p>
                         <p class="d-flex ">
                             <span class="inf">Lingua :</span>
-                            <div v-if="this.arrayLingue.includes(elemento.original_language)">
-                                <img id="flag" :src="getFlagPath(elemento.original_language)" alt="">
-                            </div>
-                            <div v-else>Lingua non trovata</div>
+                        <div v-if="this.arrayLingue.includes(elemento.original_language)">
+                            <img id="flag" :src="getFlagPath(elemento.original_language)" alt="">
+                        </div>
+                        <div v-else>Lingua non trovata</div>
                         </p>
                         <p class="text-white"> <span class="inf">Stelle :</span>
                             <span v-for="voto in store.stars">
@@ -122,21 +121,48 @@ export default {
 @use "../style/partials/variables.scss" as *;
 
 .wrapper {
-    height: calc(100vh - 80px);
+    height: 460px;
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
 
     .container {
         position: relative;
-        h2{
-            color: rgb(17, 213, 17) ;
+
+        h2 {
+            color: #d91a27;
         }
+
+        .row {
+            overflow-x: auto;
+
+            &::-webkit-scrollbar {
+                width: 5px;
+                /* imposta lo spessore della scrollbar orizzontale solo per browser Webkit */
+                height: 8px;
+                /* imposta l'altezza della scrollbar orizzontale solo per browser Webkit */
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(95, 106, 99);
+                /* imposta il colore del thumb della scrollbar orizzontale solo per browser Webkit */
+                border-radius: 8px;
+                /* arrotonda i bordi del thumb della scrollbar orizzontale solo per browser Webkit */
+            }
+
+            /* Imposta lo sfondo della scrollbar orizzontale */
+            &::-webkit-scrollbar-track {
+                background-color: rgba($main-color, .2);
+                border-radius: 10px;
+            }
+
+
             .card {
                 cursor: pointer;
-                background-color: rgba(0, 0, 0, 0.205);
-                height: 350px;
-
+                background-color: $main-color;
+                border: none;
+                width: 250px;
+                height: 320px;
 
                 i {
                     color: yellow;
@@ -158,12 +184,13 @@ export default {
                 .infoo {
                     display: none;
                     padding: 20px 0;
+                    overflow-y: auto;
 
                     .inf {
                         color: red;
-                       
                     }
-                    #flag{
+
+                    #flag {
                         width: 30px;
                         margin-left: 10px;
                     }
@@ -176,23 +203,46 @@ export default {
                 &:hover .infoo {
                     display: flex;
                     overflow-y: auto;
-                    scrollbar-width: thin;
-                    /* imposta lo spessore della scrollbar */
-                    scrollbar-color: $main-color rgba(255, 255, 255, 0.5);
-                    /* imposta il colore della scrollbar */
+                    /* mostra la scrollbar orizzontale solo quando necessario */
+                    overflow-x: auto;
+                }
+
+                &:hover {
+                    background-color: rgba(33, 38, 38, 0.5);
                 }
 
                 &:hover .infoo::-webkit-scrollbar {
                     width: 5px;
-                    /* imposta lo spessore della scrollbar solo per browser Webkit */
+                    /* imposta lo spessore della scrollbar orizzontale solo per browser Webkit */
                 }
 
                 &:hover .infoo::-webkit-scrollbar-thumb {
-                    background-color: $main-color;
-                    /* imposta il colore del thumb della scrollbar solo per browser Webkit */
+                    background-color: white;
                 }
+
+                /* imposta il colore del thumb della scrollbar orizzontale solo per browser Webkit */
+                &:hover .infoo::-webkit-scrollbar {
+                    width: 5px;
+                    /* imposta lo spessore della scrollbar orizzontale solo per browser Webkit */
+                    height: 8px;
+                    /* imposta l'altezza della scrollbar orizzontale solo per browser Webkit */
+                }
+
+                &:hover .infoo::-webkit-scrollbar-thumb {
+                    background-color: rgb(86, 168, 10);
+                    /* imposta il colore del thumb della scrollbar orizzontale solo per browser Webkit */
+                    border-radius: 8px;
+                    /* arrotonda i bordi del thumb della scrollbar orizzontale solo per browser Webkit */
+                }
+
+                /* Imposta lo sfondo della scrollbar orizzontale */
+                &:hover .infoo::-webkit-scrollbar-track {
+                    background-color: rgb(100, 97, 97);
+                    border-radius: 10px;
+                }
+
             }
         }
-    
+    }
 }
 </style>
