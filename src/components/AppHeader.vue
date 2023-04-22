@@ -21,12 +21,12 @@ export default {
             location.reload();
         },
         sceltaGenere(genere) {
-            if (genere === 'film') {
+            if (genere === 'film') {            //se il genere è film
                 this.genere = 'film';
                 this.store.serie = false
                 this.store.film = true
             }
-            if (genere === 'serie') {
+            if (genere === 'serie') {           //se il genere è serie
                 this.genere = 'serie';
                 this.store.film = false
                 this.store.serie = true
@@ -50,13 +50,6 @@ export default {
                         :class="{ 'selected': genere === 'film' }">FILM</button>
                     <button class=" rounded-pill mx-2 border-0" @click="sceltaGenere('serie')"
                         :class="{ 'selected': genere === 'serie' }">SERIE TV</button>
-                    <select class="rounded-pill mx-3 border-0 p-1" name="" id="">
-                        <option value="">Scegli una categoria</option>
-                        <option value="">Azione</option>
-                        <option value="">Thriller</option>
-                        <option value="">Comico</option>
-                        <option value="">Fantascienza</option>
-                    </select>
                 </section>
             </div>
             <SearchBarApp @search="$emit('search')" />

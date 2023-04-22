@@ -4,6 +4,8 @@ export default {
 }
 </script>
 
+--------------------------------------------------------------------------------------------------------------------------
+
 <template>
   <div class="container ">
     <div class="loader-wrapper d-flex justify-content-center align-items-start mt-5 pt-5">
@@ -13,6 +15,8 @@ export default {
 
   </div>
 </template>
+
+------------------------------------------------------------------------------------------------------------------------
 
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
@@ -46,7 +50,6 @@ export default {
   to {
     transform: rotate(360deg);
   }
-
 
 }
 </style>
