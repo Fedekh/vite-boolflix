@@ -7,12 +7,32 @@ export default {
 --------------------------------------------------------------------------------------------------------------------------
 
 <template>
-  <div class="container ">
-    <div class="loader-wrapper d-flex justify-content-center align-items-start mt-5 pt-5">
-      <h2 class="calm">CALMA</h2>
-      <div class="loader"></div>
+  <div class="container-loader">
+    <div class="">
+      <div class="wrap-loader">
+        <div class="loader">
+          <!-- Loop through four boxes -->
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="wrap-text">
+            <div class="text">
+              <!-- Loop through each character in the array -->
+              <span>L</span>
+              <span>O</span>
+              <span>A</span>
+              <span>D</span>
+              <span>I</span>
+              <span>N</span>
+              <span>G</span>
+              <span>...</span>
+            </div>
+          </div>
+        </div>
+        <div class="loader-text">wait please</div>
+      </div>
     </div>
-
   </div>
 </template>
 
@@ -21,35 +41,311 @@ export default {
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
 
-.container {
+.container-loader {
   position: relative;
-}
-.calm {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgb(194, 36, 205);
-  
-}
+  @import url('https://fonts.googleapis.com/css?family=Exo:300');
+  $main-font: 'Exo',
+  sans-serif;
+  $letterDim: 40px;
+  $letterSize: 2em;
+  $letterEasing: ease-in;
+  $letterSpeed: 8s;
 
-.loader {
-  border: 8px solid rgba(0, 0, 0, 0.2);
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 230px;
-  height: 230px;
-  animation: spin 1.8s linear infinite;
-}
+  // Colors
+  $white: #fff;
+  $black: #000;
+  $palette: #4185F3,
+  #33A753,
+  #FABB04,
+  #E94234;
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
+  // Loader Settings
+  $dim: 20rem;
+  $fadeStart: .1;
+  $fadeEnd: 1;
+  $speed: 4s;
+  $easing: ease-out;
+  $type: normal; //normal / reverse / alternate / alternate-reverse
+
+
+  // Generals
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
 
-  to {
-    transform: rotate(360deg);
+
+  // Loader styles
+  .wrap-loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: $main-color;
   }
 
-}
-</style>
+  .loader {
+    position: relative;
+    width: $dim;
+    height: $dim;
+
+    &::before {
+      z-index: 1;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: $dim / 2.3;
+      height: $dim / 2.3;
+      background: $black;
+      border-radius: 50%;
+    }
+
+    .box {
+      position: absolute;
+      width: $dim / 2;
+      height: $dim / 2;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        opacity: $fadeStart;
+      }
+
+      &:nth-child(1) {
+        top: 0;
+        left: 0;
+
+        &::before {
+          top: 50%;
+          left: 50%;
+          background: nth($palette, 1);
+          animation: lightMe1 $speed $easing infinite $type;
+        }
+      }
+
+      &:nth-child(2) {
+        top: 0;
+        right: 0;
+
+        &::before {
+          top: 50%;
+          right: 50%;
+          background: nth($palette, 2);
+          animation: lightMe2 $speed $easing infinite $type;
+        }
+      }
+
+      &:nth-child(3) {
+        bottom: 0;
+        right: 0;
+
+        &::before {
+          bottom: 50%;
+          right: 50%;
+          background: nth($palette, 3);
+          animation: lightMe3 $speed $easing infinite $type;
+        }
+      }
+
+      &:nth-child(4) {
+        bottom: 0;
+        left: 0;
+
+        &::before {
+          bottom: 50%;
+          left: 50%;
+          background: nth($palette, 4);
+          animation: lightMe4 $speed linear infinite $type;
+        }
+      }
+    }
+
+    .wrap-text {
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: $letterDim;
+      height: $letterDim;
+      overflow: hidden;
+    }
+
+    .text {
+      position: relative;
+      width: $letterDim;
+      height: $letterDim;
+      line-height: $letterDim;
+      animation: slider $letterSpeed $letterEasing infinite;
+
+      span {
+        display: block;
+        width: $letterDim;
+        height: $letterDim;
+        line-height: $letterDim;
+        text-align: center;
+        font-size: $letterSize;
+        color: greenyellow;
+      }
+    }
+  }
+
+  .loader-text {
+    color: $white;
+    transform: translateY(-2rem);
+    font-size: 1.5rem;
+    opacity: .2;
+    animation: blink $speed/4 $easing infinite alternate;
+    color: green;
+
+  }
+
+
+  // Animations
+  @keyframes lightMe1 {
+    0% {
+      opacity: $fadeStart;
+    }
+
+    25% {
+      opacity: $fadeEnd;
+    }
+
+    100% {
+      opacity: $fadeEnd;
+    }
+  }
+
+  @keyframes lightMe2 {
+    0% {
+      opacity: $fadeStart;
+    }
+
+    25% {
+      opacity: $fadeStart;
+    }
+
+    50% {
+      opacity: $fadeEnd;
+    }
+
+    100% {
+      opacity: $fadeEnd;
+    }
+  }
+
+  @keyframes lightMe3 {
+    0% {
+      opacity: $fadeStart;
+    }
+
+    50% {
+      opacity: $fadeStart;
+    }
+
+    75% {
+      opacity: $fadeEnd;
+    }
+
+    100% {
+      opacity: $fadeEnd;
+    }
+  }
+
+  @keyframes lightMe4 {
+    0% {
+      opacity: $fadeStart;
+    }
+
+    75% {
+      opacity: $fadeStart;
+    }
+
+    100% {
+      opacity: $fadeEnd;
+    }
+  }
+
+  @keyframes slider {
+    0% {
+      transform: translateY(0);
+    }
+
+    10.5% {
+      transform: translateY(0);
+    }
+
+    12.5% {
+      transform: translateY(-$letterDim);
+    }
+
+    23% {
+      transform: translateY(-$letterDim);
+    }
+
+    25% {
+      transform: translateY(-$letterDim * 2);
+    }
+
+    35% {
+      transform: translateY(-$letterDim * 2);
+    }
+
+    37.5% {
+      transform: translateY(-$letterDim * 3);
+    }
+
+    47.5% {
+      transform: translateY(-$letterDim * 3);
+    }
+
+    50% {
+      transform: translateY(-$letterDim * 4);
+    }
+
+    60% {
+      transform: translateY(-$letterDim * 4);
+    }
+
+    62.5% {
+      transform: translateY(-$letterDim * 5);
+    }
+
+    72.5% {
+      transform: translateY(-$letterDim * 5);
+    }
+
+    75% {
+      transform: translateY(-$letterDim * 6);
+    }
+
+    85% {
+      transform: translateY(-$letterDim * 6);
+    }
+
+    87.5% {
+      transform: translateY(-$letterDim * 7);
+    }
+
+    100% {
+      transform: translateY(-$letterDim * 7);
+    }
+  }
+
+  @keyframes blink {
+    from {
+      opacity: .2;
+    }
+
+    to {
+      opacity: .75;
+    }
+  }
+}</style>

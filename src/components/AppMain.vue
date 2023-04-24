@@ -2,6 +2,7 @@
 import { store } from "../store";
 import Loader from "./Loading.vue";
 import Categoria from "./Categoria.vue";
+import AppInfo from "./AppInfo.vue";
 
 
 import "/node_modules/flag-icons/css/flag-icons.min.css";
@@ -12,6 +13,7 @@ export default {
     components: {
         Loader,
         Categoria,
+        AppInfo
     },
 
     data() {
@@ -41,9 +43,8 @@ export default {
         <!-- FILM -->
         <section v-if="store.film" class="film container mt-3">
             <div v-if="store.filmsArray.length > 0">
-                <h2 class="mb-4 rounded-pill text-center">Abbiamo trovato {{ store.filmsArray.length }} film per te, scegli anche la
-                    categoria</h2>
-                <Categoria />       <!-- COMPONENTE CATEGORIA -->
+                <h2 class="mb-4 rounded-pill text-center">Abbiamo trovato {{ store.filmsArray.length }} film per te</h2>
+                <Categoria /> <!-- COMPONENTE CATEGORIA -->
             </div>
             <h2 v-else class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessun film</h2>
 
@@ -79,8 +80,7 @@ export default {
                             <span v-if="elemento.overview !== ''">{{ elemento.overview }}</span>
                             <span v-else> Ci Spiace, non è disponibile</span>
                         </p>
-                        <div>
-                        </div>
+                        <AppInfo :elemento="elemento" /> <!-- COMPONENTE APPINFO -->
                     </div>
                 </div>
             </div>
@@ -92,9 +92,8 @@ export default {
 
         <section v-if="store.serie" class="serie container mt-3">
             <div v-if="store.tvArray.length > 0">
-                <h2 class="mb-4 rounded-pill text-center">Abbiamo trovato {{ store.tvArray.length }} serie tv per te, scegli anche la
-                    categoria</h2>
-                <Categoria/>   <!-- COMPONENTE CATEGORIA -->
+                <h2 class="mb-4 rounded-pill text-center">Abbiamo trovato {{ store.tvArray.length }} serie tv per te</h2>
+                <Categoria /> <!-- COMPONENTE CATEGORIA -->
             </div>
             <h2 v-else class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessuna serie</h2>
 
@@ -130,8 +129,7 @@ export default {
                             <span v-if="elemento.overview !== ''">{{ elemento.overview }}</span>
                             <span v-else> Ci Spiace, non è disponibile</span>
                         </p>
-                        <div>
-                        </div>
+                        <AppInfo :elemento="elemento" /> <!-- COMPONENTE APPINFO -->
                     </div>
                 </div>
             </div>

@@ -73,6 +73,7 @@ export default {
           this.store.filmGeneriArray = resp.data.genres;
         })
         .catch(error => {
+          error
           this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina o inserire un nuovo valore numerico"
         })
         .finally(() => { this.store.loading = false; });
@@ -96,17 +97,18 @@ export default {
 }
 </script>
 
-
-
 <template>
-  <AppHeader @search="userSearch" />        <!-- richiamo il componente AppHeader -->
+  <AppHeader @search="userSearch" />        
   <div v-if="!store.filmsArray.length && !store.tvArray.length" class="presentazione">    
     <h2 class="begin mt-5 container text-center">Scegli il genere e la categoria che preferisci e inizia la tua ricerca
     </h2>
 
   </div>
   <div v-else class="webapp">
-    <AppMain />                    <!-- richiamo il componente AppMain -->      
+    <div v-if="store.errorMessage ===''" class="wrapper">
+      <AppMain />                         
+    </div>
+    <h3 v-else>{{ store.errorMessage }}</h3>
   </div>
 </template>
 
