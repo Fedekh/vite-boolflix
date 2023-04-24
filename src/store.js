@@ -12,6 +12,7 @@ export const store = reactive({
     tvArray: [],                   // array di serie tv
     filmGeneriArray: [],           // array di generi film
     serieGeneriArray: [],          // array di generi serie tv
+    generiComuni: [],              // array di generi comuni tra film e serie tv
     filmGeneri: "",                // generi film selezionati
     serieGeneri: "",               // generi serie tv selezionati
     querySearch: "",               // campo di ricerca
@@ -19,6 +20,9 @@ export const store = reactive({
     errorMessage: "",              // messaggio di errore
     loading: false,                // stato di caricamento,
     film:false,                    // stato di ricerca film
-    serie:false                    // stato di ricerca serie tv
+    serie:false,                    // stato di ricerca serie tv
+    idFilms: [],                   // array di id film
+    idFilmGeneri: [],              // array di id generi film
+    
 });
 

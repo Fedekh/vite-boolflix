@@ -11,6 +11,7 @@ export default {
         return {
             store,
             castArray: [],
+            generiArray: [],
             showInfo: false
         }
     },
@@ -37,7 +38,8 @@ export default {
                             this.castArray.push(resp.data.cast[i].original_name);
                         }
                     });
-            };
+                    console.log(this.castArray);
+            }
         },
         serieCast() {
             if (this.castArray.length === 0) {
@@ -51,9 +53,20 @@ export default {
                     .then(resp => {
                         for (let i = 0; i < 5; i++) {
                             this.castArray.push(resp.data.cast[i].original_name);
+
                         }
                     })
             };
+        },
+        controllo(element){
+            let carlo="";
+            for (let i=0 ; i < this.store.filmGeneriArray.length; i++){
+                console.log(this.store.filmGeneriArray[i]);
+                if (this.store.filmGeneriArray[i].id === element){
+                    carlo += this.store.filmGeneriArray[i].name
+                }
+            }
+            return carlo
         }
     }
 }
@@ -69,6 +82,18 @@ export default {
             </li>
             <li v-for="elemento in castArray">{{ elemento }}</li>
         </ul>
+        <div v-if="this.castArray.length !== 0">
+
+            <h2 v-for="number in elemento.genre_ids">
+                {{ controllo(number) }}
+            </h2>
+        </div>
+        <!-- <ul v-if="this.castArray.length !== 0">
+            <li>
+                <h5>Generi correlati :</h5>
+            </li>
+            <li v-for="generi in filmGeneriArray" >{{ generi[0]}} </li>
+        </ul> -->
         <h5 class="mt-3" v-show="this.showInfo && this.castArray.length === 0">Siamo spiacenti, non ci sono ulteriori
             informazioni</h5>
 

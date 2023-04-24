@@ -36,12 +36,16 @@ export default {
           }
         })
         .then(resp => {
-          console.log(resp);
           this.store.filmsArray = resp.data.results;      //assegno i risultati della ricerca alla variabile filmsArray
+          console.log(store.filmsArray);
+          for (let i = 0; i < this.store.filmsArray.length; i++) {
+            this.store.idFilms.push(this.store.filmsArray[i].genre_ids);
+          }
+          console.log(this.store.idFilms);
+
         })
         .catch(error => {
-          console.error(error);
-          this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina o inserire un nuovo valore numerico"  //se non trova nulla stampa questo messaggio
+          this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina"  //se non trova nulla stampa questo messaggio
         })
         .finally(() => { this.store.loading = false; });
     },
@@ -55,11 +59,10 @@ export default {
           }
         })
         .then(resp => {
-          console.log(resp);
           this.store.tvArray = resp.data.results;
         })
         .catch(error => {
-          this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina o inserire un nuovo valore numerico"
+          this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina"
         }).finally(() => { this.store.loading = false; });
     },
     searchGeneriFilm() {              //funzione per la ricerca dei generi dei film           
@@ -70,11 +73,16 @@ export default {
           }
         })
         .then((resp) => {
+          console.log(resp);
           this.store.filmGeneriArray = resp.data.genres;
+          console.log(this.store.filmGeneriArray[5]);
+          console.log(this.store.filmGeneriArray[5].id);
+          console.log(this.store.filmGeneriArray[5].name);
+         
         })
         .catch(error => {
           error
-          this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina o inserire un nuovo valore numerico"
+          this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina"
         })
         .finally(() => { this.store.loading = false; });
     },
@@ -89,7 +97,8 @@ export default {
           this.store.serieGeneriArray = resp.data.genres;
         })
         .catch(error => {
-          this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina o inserire un nuovo valore numerico"
+          this.store.errorMessage = "Oops, quacosa è andato storto...prova a ricaricare la pagina";
+          console.log(error);
         })
         .finally(() => { this.store.loading = false; });
     },
@@ -98,27 +107,31 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search="userSearch" />        
-  <div v-if="!store.filmsArray.length && !store.tvArray.length" class="presentazione">    
-    <h2 class="begin mt-5 container text-center">Scegli il genere e la categoria che preferisci e inizia la tua ricerca
+  <AppHeader @search="userSearch" />
+  <div v-show="!store.filmsArray.length && !store.tvArray.length" class="presentazione">
+    <h2 v-show="store.errorMessage === ''" class="begin mt-5 container text-center">Scegli il genere e la categoria che
+      preferisci e inizia la tua ricerca
     </h2>
-
   </div>
-  <div v-else class="webapp">
-    <div v-if="store.errorMessage ===''" class="wrapper">
-      <AppMain />                         
+  <h3 class="container text-center mt-5" v-show="store.errorMessage !== ''">{{ store.errorMessage }}</h3>
+  <div class="webapp">
+    <div v-if="!store.loading" class="wrapper">
+      <AppMain />
     </div>
-    <h3 v-else>{{ store.errorMessage }}</h3>
   </div>
 </template>
 
 <style lang="scss">
 @use "./style/general.scss";
 
+h3 {
+  color: rgb(226, 10, 10);
+
+}
+
 .begin {
   color: rgb(16, 222, 16);
   animation: pulse 1s ease-in-out infinite;
-
 
   @keyframes pulse {
     0% {

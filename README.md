@@ -1,55 +1,11 @@
-<a name="br1"></a>BoolFlix
+**Personale Interpretazione delle consegne:**
 
-(repo: vite-boolflix)
-
-In questo esercizio iniziamo a replicare la logica che sta dietro a tantissimi siti che
-
-permettono la visione di film e telefilm.
-
-Per fare questo, come fanno siti molto più rinomati, utilizzeremo un API che ci
-
-permette di avere un insieme di risultati congrui alla nostra ricerca.
-
-\- Iscriviamoci al sito [https://www.themoviedb.org](https://www.themoviedb.org/). E’ completamente gratuito.
-
-\- Richiediamo la nostra API\_KEY che verrà utilizzata in tutte le nostre
-
-chiamate. Servirà all’API a capire chi sta effettuando la chiamata.
-
-\- Per richiederla clicchiamo sul nostro user, poi impostazioni, API e clicchiamo
-
-su “Richiedi una nuova API key”.
-
-\- Una volta generato, in Impostazioni / API avremo la nostra chiave,
-
-indispensabile per tutte le nostre chiamate.
-
-A questo url <https://developers.themoviedb.org/3>[ ](https://developers.themoviedb.org/3)troveremo tutte le chiamate
-
-possibili all’API. Possiamo giocarci in un secondo momento, ma come prima cosa
-
-concentriamoci su Search > Movies.
-
-Con questa chiamata possiamo cercare tutti i film associati ad una ricerca (query).
-
-Passiamo come parametri query e api\_key e vedremo i nostri risultati. Volendo
-
-possiamo passare anche language=it-IT per filtrare i risultati in lingua italiana.
-
-Esempio chiamata:
-
-https://api.themoviedb.org/3/search/movie?api\_key=e99307154c6dfb0b4750f6603256716d&query=ritorno+al+fut
-
-uro
+Salve, da quello che ho pensato di capire, ho eseguito si tutte le milestone a fatica, dall 1 alla 6. Ho eseguito, forse pensando
+di fare meglio, prima la milestone 6 e poi la 5, e in effetti penso mi abbia creato difficoltà. 
+Facendo cosi, ho pensato che nel milestone 5 bastasse inserire solo la lista (max 5) di attore o personaggi presenti nel film (o serie tv) senza precisare ulteriori generi dato che poi verrebbe filtrato col milestone 6.
+Penso sia cosi. Grazie
 
 
-
-
-<a name="br2"></a>**Milestone 0:**
-
-Progettare la struttura del global state sulla linea degli esercizi svolti nei giorni
-
-precedenti.
 
 **Milestone 1:**
 
@@ -116,8 +72,7 @@ Esempio di URL:
 <https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png>
 
 
-
-<a name="br3"></a>Trasformiamo poi il voto da 1 a 10 decimale in un numero intero da 1 a 5, così da
+Trasformiamo poi il voto da 1 a 10 decimale in un numero intero da 1 a 5, così da
 
 permetterci di stampare a schermo un numero di stelle piene che vanno da 1 a 5,
 
@@ -145,64 +100,6 @@ di “card” in cui lo sfondo è rappresentato dall’immagine di copertina (*c
 
 aggiuntive già prese nei punti precedenti più la overview
 
-**Mockup:**
-
-**Mockup (on hover sul primo elemento):**
-
-
-
-
-<a name="br4"></a>**Consigli:**
-
-1\. Andate in fila, seguendo le milestone, non pensate all’interfaccia grafica fino
-
-al punto 4
-
-2\. Non pensate all’interfaccia grafica fino al punto 4 (si, l’ho scritto due volte),
-
-tutto può essere risolto con una <ul> non stilizzata
-
-3\. Ricordatevi quanto imparato finora con le diverse esercitazioni:
-
-○ Affrontate sempre prima il caso base minimo, senza complicazioni (ad
-
-es. “*Se il titolo originale è uguale al titolo, magari dovrei nasconderlo*”,
-
-“*Se faccio una ricerca che non ha nessun risultato dovrei scrivere*
-
-*qualcosa*” sono domande da NON FARSI fino a quando non si è fatto
-
-completamente un caso base)
-
-
-
-
-<a name="br5"></a>○ Se ti viene volta di copiare/incollare codice, NON FARLO, fai una
-
-funzione! Quei pochi minuti risparmiati renderanno il tuo codice meno
-
-leggibile ed ogni volta che dovrai intervenire su quella parte perderai
-
-molto più tempo
-
-○ Prima di andare avanti, assicurati di aver risolto quella parte nel miglior
-
-modo possibile (codice non ripetuto, minimo codice possibile, funzioni
-
-chiare e riutilizzabili). Risparmierai tantissimo tempo risolvendo gli
-
-esercizi successivi
-
-○ Meglio risolvere una milestone in meno, ma con codice scritto bene
-
-4\. Per avere la lista delle lingue utilizzare:
-
-https://en.wikipedia.org/wiki/List\_of\_ISO\_639-1\_codes
-
-
-
-
-<a name="br6"></a>**SE HAI FINITO LE MILESTONE PRECEDENTI E VUOI ANDARE OLTRE, PUOI**
 
 **FARE LE MILESTONE SUCCESSIVE, MA SONO FACOLTATIVE:**
 

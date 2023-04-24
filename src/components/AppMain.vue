@@ -46,7 +46,7 @@ export default {
                 <h2 class="mb-4 rounded-pill text-center">Abbiamo trovato {{ store.filmsArray.length }} film per te</h2>
                 <Categoria /> <!-- COMPONENTE CATEGORIA -->
             </div>
-            <h2 v-else class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessun film</h2>
+            <h2 v-show="store.errorMessage !=='' && store.filmsArray.length === 0" class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessun film</h2>
 
             <div class="row d-flex flex-nowrap">
                 <div v-show="store.filmGeneri === '' || elemento.genre_ids.includes(this.store.filmGeneri)"
@@ -95,7 +95,7 @@ export default {
                 <h2 class="mb-4 rounded-pill text-center">Abbiamo trovato {{ store.tvArray.length }} serie tv per te</h2>
                 <Categoria /> <!-- COMPONENTE CATEGORIA -->
             </div>
-            <h2 v-else class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessuna serie</h2>
+            <h2 v-show="store.errorMessage === ''" v-else class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessuna serie</h2>
 
             <div class="row d-flex flex-nowrap">
                 <div v-show="store.serieGeneri === '' || elemento.genre_ids.includes(this.store.serieGeneri)"

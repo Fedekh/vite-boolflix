@@ -3,6 +3,7 @@ import { store } from "../store";
 
 export default {
   name: "Categoria",
+  
   data() {
     return {
       store
