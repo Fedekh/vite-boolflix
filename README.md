@@ -1,9 +1,11 @@
 **Personale Interpretazione delle consegne:**
 
-Salve, da quello che ho pensato di capire, ho eseguito si tutte le milestone a fatica, dall 1 alla 6. Ho eseguito, forse pensando
+Salve, da quello che ho pensato di capire, ho eseguito si tutte le milestone, ma a fatica, dall 1 alla 6. Ho eseguito, forse pensando
 di fare meglio, prima la milestone 6 e poi la 5, e in effetti penso mi abbia creato difficoltà. 
-Facendo cosi, ho pensato che nel milestone 5 bastasse inserire solo la lista (max 5) di attore o personaggi presenti nel film (o serie tv) senza precisare ulteriori generi dato che poi verrebbe filtrato col milestone 6.
-Penso sia cosi. Grazie
+Il tutto funziona solo se prima si decide il genere (film o serie tv), anche se controsenso, penso sia stato
+detto cosi a lezione. Poi da qui si puo filtrare i risultati tramite il menu a tendina, che compare sia per Film
+che per serie Tv. Col passaggio in hover vengono mostrate alcune info di ogni card/locandina; se si clicca il 
+buttone presente in hover in fondo alla card si accede a ulteriori info, se presenti, tra cui cast e generi associati
 
 
 

@@ -15,33 +15,28 @@ export default {
     }
   },
   methods: {
-    userSearch() {                      //funzione per la ricerca dell'utente               
+    userSearch() {                                //funzione per la ricerca dell'utente               
       if (this.store.querySearch === "") {
         console.log("error");
       } else {
-        this.searchFilm();                //richiamo le funzioni per la ricerca dei film e delle serie tv
-        this.searchTv();                 //richiamo le funzioni per la ricerca dei film e delle serie tv
-        this.searchGeneriFilm();          //richiamo le funzioni per la ricerca dei generi dei film e delle serie tv
-        this.searchGeneriSerie();         //richiamo le funzioni per la ricerca dei generi dei film e delle serie tv
+        this.searchFilm();
+        this.searchTv();
+        this.searchGeneriFilm();
+        this.searchGeneriSerie();
         this.store.querySearch = "";
       }
     },
-    searchFilm() {                        //funzione per la ricerca dei film
+    searchFilm() {                                //funzione per la ricerca dei film
       this.store.loading = true;
       axios
         .get(`${this.store.api}${this.store.apiFilms}`, {
           params: {
             api_key: this.store.myApiKey,         //richiamo l'api key
-            query: this.store.querySearch       //richiamo la query di ricerca
+            query: this.store.querySearch         //richiamo la query di ricerca
           }
         })
         .then(resp => {
           this.store.filmsArray = resp.data.results;      //assegno i risultati della ricerca alla variabile filmsArray
-          console.log(store.filmsArray);
-          for (let i = 0; i < this.store.filmsArray.length; i++) {
-            this.store.idFilms.push(this.store.filmsArray[i].genre_ids);
-          }
-          console.log(this.store.idFilms);
 
         })
         .catch(error => {
@@ -75,10 +70,7 @@ export default {
         .then((resp) => {
           console.log(resp);
           this.store.filmGeneriArray = resp.data.genres;
-          console.log(this.store.filmGeneriArray[5]);
-          console.log(this.store.filmGeneriArray[5].id);
-          console.log(this.store.filmGeneriArray[5].name);
-         
+
         })
         .catch(error => {
           error
@@ -106,11 +98,12 @@ export default {
 }
 </script>
 
+<!-- ►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►► -->
+
 <template>
   <AppHeader @search="userSearch" />
   <div v-show="!store.filmsArray.length && !store.tvArray.length" class="presentazione">
-    <h2 v-show="store.errorMessage === ''" class="begin mt-5 container text-center">Scegli il genere e la categoria che
-      preferisci e inizia la tua ricerca
+    <h2 v-show="store.errorMessage === ''" class="begin mt-5 container text-center">Scegli il genere e inizia la tua ricerca
     </h2>
   </div>
   <h3 class="container text-center mt-5" v-show="store.errorMessage !== ''">{{ store.errorMessage }}</h3>
@@ -120,6 +113,8 @@ export default {
     </div>
   </div>
 </template>
+
+<!-- ►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►► -->
 
 <style lang="scss">
 @use "./style/general.scss";
@@ -131,21 +126,6 @@ h3 {
 
 .begin {
   color: rgb(16, 222, 16);
-  animation: pulse 1s ease-in-out infinite;
-
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-
-    50% {
-      transform: scale(1.1);
-    }
-
-    100% {
-      transform: scale(1);
-    }
-  }
 
   .webapp {
     height: 100vh;

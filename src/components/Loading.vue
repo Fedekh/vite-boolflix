@@ -4,21 +4,20 @@ export default {
 }
 </script>
 
---------------------------------------------------------------------------------------------------------------------------
+
+<!-- ►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►► -->
 
 <template>
   <div class="container-loader">
     <div class="">
       <div class="wrap-loader">
         <div class="loader">
-          <!-- Loop through four boxes -->
           <div class="box"></div>
           <div class="box"></div>
           <div class="box"></div>
           <div class="box"></div>
           <div class="wrap-text">
             <div class="text">
-              <!-- Loop through each character in the array -->
               <span>L</span>
               <span>O</span>
               <span>A</span>
@@ -36,7 +35,9 @@ export default {
   </div>
 </template>
 
-------------------------------------------------------------------------------------------------------------------------
+
+<!-- ►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►► -->
+
 
 <style scoped lang="scss">
 @use "../style/partials/variables" as *;
@@ -54,10 +55,7 @@ export default {
   // Colors
   $white: #fff;
   $black: #000;
-  $palette: #4185F3,
-  #33A753,
-  #FABB04,
-  #E94234;
+  $palette: #4185F3, #33A753, #FABB04, #E94234;
 
   // Loader Settings
   $dim: 20rem;

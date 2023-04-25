@@ -9,24 +9,26 @@ export default {
       store
     };
   },
+  methods:{
+    change(){}
+  }
   
 };
 
 </script>
 
---------------------------------------------------------------------------------------------------------------
+<!-- ►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►► -->
 
 <template>
-  
   <!-- CATEGORIE FILMS -->
   <section v-if="store.film">
     <select v-model="store.filmGeneri" v-show="store.filmGeneriArray.length" class="rounded-pill my-5 border-0 p-1"
-      name="select" id="film-select">
-      <option value="">Scegli una categoria</option>
-      <option v-for="categoria in store.filmGeneriArray" :key="categoria.id" :value="categoria.id">{{ categoria.name }}
-      </option>
-    </select>
-  </section>
+    name="select" id="film-select">
+    <option value="">Scegli una categoria</option>
+    <option v-for="categoria in store.filmGeneriArray" :key="categoria.id" :value="categoria.id">{{ categoria.name }}
+    </option>
+  </select>
+</section>
   <!-- /CATEGORIE FILMS -->
 
 
@@ -43,7 +45,9 @@ export default {
 
 </template>
 
------------------------------------------------------------------------------------------------------------------
+
+<!-- ►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►►► -->
+
 
 
 <style lang="scss" scoped>

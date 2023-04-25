@@ -37,13 +37,12 @@ export default {
 
 <template>
     <Loader v-if="store.loading" />
-
     <div v-else class="wrapper">
 
         <!-- FILM -->
         <section v-if="store.film" class="film container mt-3">
             <div v-if="store.filmsArray.length > 0">
-                <h2 class="mb-4 rounded-pill text-center">Abbiamo trovato {{ store.filmsArray.length }} film per te</h2>
+                <h2 class="mb-4 rounded-pill text-center">Film trovati : </h2>
                 <Categoria /> <!-- COMPONENTE CATEGORIA -->
             </div>
             <h2 v-show="store.errorMessage !=='' && store.filmsArray.length === 0" class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessun film</h2>
@@ -92,10 +91,10 @@ export default {
 
         <section v-if="store.serie" class="serie container mt-3">
             <div v-if="store.tvArray.length > 0">
-                <h2 class="mb-4 rounded-pill text-center">Abbiamo trovato {{ store.tvArray.length }} serie tv per te</h2>
+                <h2 class="mb-4 rounded-pill text-center">Serie tv trovate : </h2>
                 <Categoria /> <!-- COMPONENTE CATEGORIA -->
             </div>
-            <h2 v-show="store.errorMessage === ''" v-else class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessuna serie</h2>
+            <h2 v-show="store.errorMessage !=='' && store.tvArray.length === 0" class="mb-4 text-center"> Ci dispiace, non abbiamo trovato nessun film</h2>
 
             <div class="row d-flex flex-nowrap">
                 <div v-show="store.serieGeneri === '' || elemento.genre_ids.includes(this.store.serieGeneri)"
