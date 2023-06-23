@@ -155,8 +155,7 @@ export default {
         position: relative;
 
         h2 {
-            // color: #d91a27;
-            color: rgb(4, 212, 4);
+            color: #d91a27;
 
         }
 

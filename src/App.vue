@@ -120,13 +120,13 @@ export default {
 @use "./style/general.scss";
 
 h3 {
-  color: rgb(226, 10, 10);
+  color: rgb(10, 226, 154);
 
 }
 
 .begin {
-  color: rgb(16, 222, 16);
-
+  color: rgb(246, 37, 0);
+o
   .webapp {
     height: 100vh;
     width: 100%;
