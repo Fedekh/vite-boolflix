@@ -103,7 +103,7 @@ export default {
 <template>
   <AppHeader @search="userSearch" />
   <div v-show="!store.filmsArray.length && !store.tvArray.length" class="presentazione">
-    <h2 v-show="store.errorMessage === ''" class="begin mt-5 container text-center">Scegli il genere e inizia la tua ricerca
+    <h2 v-show="store.errorMessage === ''" class="begin mt-5 container text-center">Scegli se FILM o SERIE TV, digita un titolo e cerca
     </h2>
   </div>
   <h3 class="container text-center mt-5" v-show="store.errorMessage !== ''">{{ store.errorMessage }}</h3>
